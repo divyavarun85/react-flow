@@ -54,26 +54,48 @@ export default function App() {
   const [edges, setEdges] = useState(initialEdges);
 
   const handleNodeClick = (nodeId) => {
-    const nodesToAdd = [];
-    const nodesToRemove = [];
-
-    if (['1', '2'].includes(nodeId)) {
-      // Show nodes 3, 4, 5, 7
-      nodesToAdd.push(allNodes[2], allNodes[3], allNodes[4], allNodes[6]);
-    }
-    if (['3', '5'].includes(nodeId)) {
-      // Show node 6
-      nodesToAdd.push(allNodes[5]);
-    }
-    if (['4', '7'].includes(nodeId)) {
-      // Show nodes 8, 9, 10
-      nodesToAdd.push(allNodes[7], allNodes[8], allNodes[9]);
-    }
-
     setNodes(prevNodes => {
       const nodeIds = new Set(prevNodes.map(n => n.id));
-      const newNodes = [...prevNodes];
-      
+      let nodesToAdd = [];
+      let nodesToRemove = [];
+
+      // Determine which nodes to add or remove based on the clicked node
+      if (nodeId === '1' || nodeId === '2') {
+        // If Node 1 or 2 is clicked, toggle nodes 3, 4, 5, 7
+        if (nodeIds.has('1') || nodeIds.has('2')) {
+          nodesToAdd = [allNodes[2], allNodes[3], allNodes[4], allNodes[6]];
+          nodesToRemove = prevNodes.filter(n => !['1', '2'].includes(n.id));
+        } else {
+          nodesToAdd = [allNodes[0], allNodes[1]];
+        }
+      } else if (['3', '5'].includes(nodeId)) {
+        // If Node 3 or 5 is clicked, toggle node 6
+        nodesToAdd = [allNodes[5]];
+        nodesToRemove = prevNodes.filter(n => !['1', '2', '3', '5'].includes(n.id));
+      } else if (['4', '7'].includes(nodeId)) {
+        // If Node 4 or 7 is clicked, toggle nodes 8, 9, 10
+        nodesToAdd = [allNodes[7], allNodes[8], allNodes[9]];
+        nodesToRemove = prevNodes.filter(n => !['1', '2', '4', '7'].includes(n.id));
+      }
+
+      // Check if the node is already visible and determine which nodes to remove
+      if (nodeIds.has(nodeId)) {
+        // Node is visible, remove corresponding nodes
+        if (['1', '2'].includes(nodeId)) {
+          nodesToRemove = [allNodes[2], allNodes[3], allNodes[4], allNodes[6], allNodes[7], allNodes[8], allNodes[9], allNodes[10]];
+        }
+        if (['3', '5'].includes(nodeId)) {
+          nodesToRemove = [allNodes[5]];
+        }
+        if (['4', '7'].includes(nodeId)) {
+          nodesToRemove = [allNodes[7], allNodes[8], allNodes[9], allNodes[10],];
+        }
+      }
+
+      // Remove nodes
+      const newNodes = prevNodes.filter(node => !nodesToRemove.includes(node));
+
+      // Add nodes
       nodesToAdd.forEach(node => {
         if (!nodeIds.has(node.id)) {
           newNodes.push(node);
