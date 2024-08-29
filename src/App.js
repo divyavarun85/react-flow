@@ -23,10 +23,25 @@ const initialNodes = [
     style: { width: 150, height: 100 },
     type: 'special',
   },
+  {
+    id: '3',
+    position: { x: -400, y: 120 },
+    data: { label: 'Node 3', img: avatarone },
+    style: { width: 150, height: 100 },
+    type: 'special',
+  },
+  {
+    id: '4',
+    position: { x: 400, y: 120 },
+    data: { label: 'Node 4', img: avatarone },
+    style: { width: 150, height: 100 },
+    type: 'special',
+  },
 ];
 
 const initialEdges = [
   { id: 'e1-1', source: '1', target: '2', type: 'custom', sourceHandle: 'bottom', targetHandle: 'bottom' },
+  { id: 'e1-2', source: '3', target: '4', type: '', sourceHandle: 'top', targetHandle: 'top' },
 ];
 
 // Custom Edge Component to draw an additional vertical line from the middle
@@ -34,7 +49,7 @@ const CustomEdge = ({ id, sourceX, sourceY, targetX, targetY }) => {
   const midX = (sourceX + targetX) / 2;
   const midY = (sourceY + targetY) / 2;
 
-  const lineLength = 75; // Approx. 2cm in pixels
+  const lineLength = 56; // Approx. 2cm in pixels
 
   // Calculate the end point of the vertical line
   const lineEndY = midY + lineLength;
@@ -98,6 +113,18 @@ export default function App() {
         position="bottom"
         id="bottom"
         style={{ bottom: '-8px', background: '#555' }}
+      />
+      <Handle
+        type="source"
+        position="top"
+        id="top"
+        style={{ top: '-8px', background: '#555' }}
+      />
+      <Handle
+        type="target"
+        position="top"
+        id="top"
+        style={{ top: '-8px', background: '#555' }}
       />
       <button
         style={{ marginLeft: 10, position: 'absolute', top: 0, right: 0 }}
