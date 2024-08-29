@@ -49,11 +49,11 @@ const App = () => {
     const treeContainerRef = useRef(null);
 
     const zoomIn = () => {
-        setZoom(prevZoom => Math.min(prevZoom + 0.1, 2)); // Maximum zoom level 2
+        setZoom(prevZoom => Math.min(prevZoom + 0.1, 2)); 
     };
 
     const zoomOut = () => {
-        setZoom(prevZoom => Math.max(prevZoom - 0.1, 0.5)); // Minimum zoom level 0.5
+        setZoom(prevZoom => Math.max(prevZoom - 0.1, 0.5)); 
     };
 
     const handleMouseDown = (e) => {
@@ -127,6 +127,7 @@ const App = () => {
                                         name: 'Henry Rossier',
                                         imageUrl: avatrtwo,
                                     },
+                                    
                                 ]
                             }
                         ]
@@ -159,6 +160,7 @@ const App = () => {
                         <TreeNode node={treeData} />
                         <TreeNode node={treeDataOne} />
                     </ul>
+                    
                 </div>
                 <div className="zoom-controls" style={{ position: 'fixed', bottom: '10px', right: '10px', display: 'flex', gap: '10px' }}>
                     <button onClick={zoomIn} className="bg-blue-500 text-white p-2 rounded">Zoom In</button>
