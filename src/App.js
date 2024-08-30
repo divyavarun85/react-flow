@@ -6,29 +6,36 @@ import ReactFlow, {
   Handle,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
-import avatarone from './assets/Mask Group (2).svg';
+import avatarone from './assets/Group 763930 (1).svg';
+import avatartwo from './assets/Group 763930 (2).svg';
+import avatarthree from './assets/Group 763930 (3).svg';
+import avatarfour from './assets/Mask Group (1).svg';
+import avatarfive from './assets/Group 763930 (3).svg';
+import avatarsix from './assets/Mask Group (3).svg';
+import avatarseven from './assets/Mask Group (4).svg';
+import avatareight from './assets/Mask Group.svg';
 
 // Define nodes and edges
 const allNodes = [
-  { id: '1', position: { x: -200, y: -20 }, data: { label: 'Node 1', img: avatarone }, style: { width: 180, height: 200 }, type: 'special' },
-  { id: '2', position: { x: 200, y: -20 }, data: { label: 'Node 2', img: avatarone }, style: { width: 180, height: 200 }, type: 'special' },
-  { id: '3', position: { x: -300, y: 120 }, data: { label: 'Node 3', img: avatarone }, style: { width: 180, height: 200 }, type: 'special' },
-  { id: '4', position: { x: 300, y: 120 }, data: { label: 'Node 4', img: avatarone }, style: { width: 180, height: 200 }, type: 'special' },
-  { id: '5', position: { x: -500, y: 120 }, data: { label: 'Node 5', img: avatarone }, style: { width: 180, height: 200 }, type: 'special' },
-  { id: '6', position: { x: -400, y: 250 }, data: { label: 'Node 6', img: avatarone }, style: { width: 180, height: 200 }, type: 'special' },
-  { id: '7', position: { x: 500, y: 120 }, data: { label: 'Node 7', img: avatarone }, style: { width: 180, height: 200 }, type: 'special' },
-  { id: '8', position: { x: 400, y: 250 }, data: { label: 'Node 8', img: avatarone }, style: { width: 180, height: 200 }, type: 'special' },
-  { id: '9', position: { x: 200, y: 250 }, data: { label: 'Node 9', img: avatarone }, style: { width: 180, height: 200 }, type: 'special' },
-  { id: '10', position: { x: 600, y: 250 }, data: { label: 'Node 10', img: avatarone }, style: { width: 180, height: 200 }, type: 'special' },
+  { id: '1', position: { x: -200, y: 0 }, data: { label: 'Node 1', img: avatarone }, style: { width: 180, height: 200 }, type: 'special' },
+  { id: '2', position: { x: 200, y: 0 }, data: { label: 'Node 2', img: avatartwo }, style: { width: 180, height: 200 }, type: 'special' },
+  { id: '3', position: { x: -250, y: 215 }, data: { label: 'Node 3', img: avatarthree }, style: { width: 180, height: 200 }, type: 'special' },
+  { id: '4', position: { x: 250, y: 215 }, data: { label: 'Node 4', img: avatarfour }, style: { width: 180, height: 200 }, type: 'special' },
+  { id: '5', position: { x: -550, y: 215 }, data: { label: 'Node 5', img: avatarfive }, style: { width: 180, height: 200 }, type: 'special' },
+  { id: '6', position: { x: -400, y: 400 }, data: { label: 'Node 6', img: avatarsix }, style: { width: 180, height: 200 }, type: 'special' },
+  { id: '7', position: { x: 550, y: 215 }, data: { label: 'Node 7', img: avatarseven }, style: { width: 180, height: 200 }, type: 'special' },
+  { id: '8', position: { x: 400, y: 400 }, data: { label: 'Node 8', img: avatareight }, style: { width: 180, height: 200 }, type: 'special' },
+  { id: '9', position: { x: 100, y: 400 }, data: { label: 'Node 9', img: avatarone }, style: { width: 180, height: 200 }, type: 'special' },
+  { id: '10', position: { x: 700, y: 400 }, data: { label: 'Node 10', img: avatarone }, style: { width: 180, height: 200 }, type: 'special' },
 ];
 
 const initialEdges = [
   { id: 'e1-1', source: '1', target: '2', type: 'custom', sourceHandle: 'bottom', targetHandle: 'bottom' },
-  { id: 'e1-2', source: '3', target: '4', type: '', sourceHandle: 'top', targetHandle: 'top' },
+  { id: 'e1-2', source: '3', target: '4', type: 'smoothstep', sourceHandle: 'top', targetHandle: 'top' },
   { id: 'e1-3', source: '3', target: '5', type: 'custom', sourceHandle: 'bottom', targetHandle: 'bottom' },
   { id: 'e1-4', source: '4', target: '7', type: 'custom', sourceHandle: 'bottom', targetHandle: 'bottom' },
-  { id: 'e1-5', source: '8', target: '10', type: '', sourceHandle: 'top', targetHandle: 'top' },
-  { id: 'e1-6', source: '9', target: '8', type: '', sourceHandle: 'top', targetHandle: 'top' },
+  { id: 'e1-5', source: '8', target: '10', type: 'smoothstep', sourceHandle: 'top', targetHandle: 'top' },
+  { id: 'e1-6', source: '9', target: '8', type: 'smoothstep', sourceHandle: 'top', targetHandle: 'top' },
 ];
 
 // Custom Edge Component to draw an additional vertical line from the middle
@@ -49,6 +56,24 @@ const CustomEdge = ({ id, sourceX, sourceY, targetX, targetY }) => {
   );
 };
 
+const CustomEdgetwo = ({ id, sourceX, sourceY, targetX, targetY }) => {
+  const lineLength = 60; // Approx. 2cm in pixels
+
+  return (
+    <g>
+      {/* Original straight edge */}
+      <line x1={sourceX} y1={sourceY} x2={targetX} y2={targetY} stroke="#DCDCDC" strokeWidth={2} />
+
+      {/* Vertical line at the source */}
+      <line x1={sourceX} y1={sourceY} x2={sourceX} y2={sourceY + lineLength} stroke="#DCDCDC" strokeWidth={2} />
+
+      {/* Vertical line at the target */}
+      <line x1={targetX} y1={targetY} x2={targetX} y2={targetY + lineLength} stroke="#DCDCDC" strokeWidth={2} />
+    </g>
+  );
+};
+
+
 export default function App() {
   const [nodes, setNodes] = useState([allNodes[0], allNodes[1]]); // Start with nodes 1 and 2
   const [edges, setEdges] = useState(initialEdges);
@@ -58,7 +83,7 @@ export default function App() {
       const nodeIds = new Set(prevNodes.map(n => n.id));
       let nodesToAdd = [];
       let nodesToRemove = [];
-
+  
       // Determine which nodes to add or remove based on the clicked node
       if (nodeId === '1' || nodeId === '2') {
         // If Node 1 or 2 is clicked, toggle nodes 3, 4, 5, 7
@@ -77,76 +102,80 @@ export default function App() {
         nodesToAdd = [allNodes[7], allNodes[8], allNodes[9]];
         nodesToRemove = prevNodes.filter(n => !['1', '2', '4', '7'].includes(n.id));
       }
-
+  
       // Check if the node is already visible and determine which nodes to remove
       if (nodeIds.has(nodeId)) {
         // Node is visible, remove corresponding nodes
         if (['1', '2'].includes(nodeId)) {
-          nodesToRemove = [allNodes[2], allNodes[3], allNodes[4], allNodes[6], allNodes[7], allNodes[8], allNodes[9], allNodes[10]];
+          nodesToRemove = [allNodes[2], allNodes[3], allNodes[4], allNodes[6], allNodes[5], allNodes[7], allNodes[8], allNodes[9], allNodes[10]];
         }
         if (['3', '5'].includes(nodeId)) {
           nodesToRemove = [allNodes[5]];
         }
         if (['4', '7'].includes(nodeId)) {
-          nodesToRemove = [allNodes[7], allNodes[8], allNodes[9], allNodes[10],];
+          nodesToRemove = [allNodes[7], allNodes[8], allNodes[9], allNodes[10]];
         }
       }
-
+  
       // Remove nodes
       const newNodes = prevNodes.filter(node => !nodesToRemove.includes(node));
-
+  
       // Add nodes
       nodesToAdd.forEach(node => {
         if (!nodeIds.has(node.id)) {
           newNodes.push(node);
         }
       });
-
+  
       return newNodes;
     });
   };
+  
 
-  const nodeStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    border: '1px solid #ddd',
-    padding: '10px',
-    borderRadius: '5px',
-    backgroundColor: '#DCDCDC',
-    position: 'relative',
+ 
+
+  const CustomNode = ({ data }) => {
+    // Determine if the vertical line should be shown based on the node's label
+    const showVerticalLine = !['Node 6', 'Node 9', 'Node 8', 'Node 10'].includes(data.label);
+  
+    return (
+      <div onClick={() => handleNodeClick(data.label.split(' ')[1])} className='flex flex-wrap align-middle items-center bg-[#DCDCDC] h-24 w-60 rounded-md'>
+        <img src={data.img} alt={data.label} className='mx-auto -mt-10' />
+        <p className='text-center w-full'>{data.label}</p>
+        
+        {/* Conditionally render the vertical line */}
+        {showVerticalLine && (
+          <div style={{ position: 'absolute', bottom: '-10px', left: '50%', width: '2px', height: '37px', background: '#DCDCDC', transform: 'translateX(-50%)' }} />
+        )}
+        
+        <Handle
+          type="source"
+          position="bottom"
+          id="bottom"
+          style={{ bottom: '-8px', background: '#DCDCDC' }}
+        />
+        <Handle
+          type="target"
+          position="bottom"
+          id="bottom"
+          style={{ bottom: '-8px', background: '#DCDCDC' }}
+        />
+        <Handle
+          type="source"
+          position="top"
+          id="top"
+          style={{ top: '-8px', background: '#DCDCDC' }}
+        />
+        <Handle
+          type="target"
+          position="top"
+          id="top"
+          style={{ top: '-8px', background: '#DCDCDC' }}
+        />
+      </div>
+    );
   };
-
-  const CustomNode = ({ data }) => (
-    <div style={nodeStyle} onClick={() => handleNodeClick(data.label.split(' ')[1])}>
-      <img src={data.img} alt={data.label} style={{ marginRight: 10 }} />
-      {data.label}
-      <Handle
-        type="source"
-        position="bottom"
-        id="bottom"
-        style={{ bottom: '-8px', background: '#DCDCDC' }}
-      />
-      <Handle
-        type="target"
-        position="bottom"
-        id="bottom"
-        style={{ bottom: '-8px', background: '#DCDCDC' }}
-      />
-      <Handle
-        type="source"
-        position="top"
-        id="top"
-        style={{ top: '-8px', background: '#DCDCDC' }}
-      />
-      <Handle
-        type="target"
-        position="top"
-        id="top"
-        style={{ top: '-8px', background: '#DCDCDC' }}
-      />
-    </div>
-  );
+  
 
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
@@ -154,7 +183,7 @@ export default function App() {
         nodes={nodes}
         edges={edges}
         nodeTypes={{ special: CustomNode }}
-        edgeTypes={{ custom: CustomEdge }}
+        edgeTypes={{ custom: CustomEdge,customtwo: CustomEdgetwo }}
       >
         <Controls />
         <MiniMap />

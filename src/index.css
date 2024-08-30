@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.react-flow__node.react-flow__node-special.nopan.selectable{
+    height: 120px !important;
+}
