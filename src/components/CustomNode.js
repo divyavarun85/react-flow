@@ -18,7 +18,7 @@ export default function CustomNode({ data }) {
       <EllipsisButton style={{position:'absolute',right: '0 ' }}/>
       <Handle type="target" position={Position.Top}  />
       <img src={data.img} alt={data.label} style={{position:'absolute',top: '-25px ' }} />
-      <span>{data.label}({data.id})</span>
+      <span className='p-2'>{data.label}({data.id})</span>
       <Handle type="source" position={Position.Bottom} style={handleStyle} />
     </div>
   );

@@ -45,12 +45,13 @@ export default function App() {
       id: (nodes.length + 1).toString(),
       position: { x: Math.random() * 250, y: Math.random() * 250 },
       type: 'custom',
-      data: { label: `Node ${nodes.length + 1}`, img: newImageUrl || '' },
+      data: { label: `Node ${nodes.length + 1}`, img: newImageUrl || '', id: (nodes.length + 1).toString() },
     };
     setNodes((nds) => [...nds, newNode]);
     setNewImageFile(null);
     setNewImageUrl('');
   };
+  
 
   // Function to update node label/name and image
   const updateNodeNameAndImage = () => {
@@ -101,17 +102,18 @@ export default function App() {
 
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        nodeTypes={nodeTypes}
-      >
-        <Controls />
-        <MiniMap />
-        <Background />
-      </ReactFlow>
+    <ReactFlow
+  nodes={nodes}
+  edges={edges}
+  onNodesChange={onNodesChange}
+  onEdgesChange={onEdgesChange}
+  nodeTypes={nodeTypes}
+>
+  <Controls />
+  <MiniMap />
+  <Background />
+</ReactFlow>
+
 
       <div style={{ position: 'absolute', right: 10, top: 50, zIndex: 10 }}>
         {/* Add Node Button */}
