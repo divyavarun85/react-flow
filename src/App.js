@@ -32,18 +32,6 @@ const jsonData = {
         }
       ]
     },
-    {
-      "name": "Isha Ambani",
-      "spouse": "Anand Piramal",
-      "image": avatarone,
-      "spouseimage": avatarone,
-      "children": [
-        {
-          "name": "Krishna Piramal",
-          "image": avatarone
-        }
-      ]
-    }
   ]
 };
 
@@ -65,6 +53,8 @@ function generateNodesAndEdges(data, parentId = null, nodes = [], edges = [], po
       id: `e${parentId}-${currentId}`,
       source: `${parentId}`,
       target: `${currentId}`,
+      type: 'smoothstep', // Use the smoothstep edge type
+  
     });
   }
 
@@ -75,12 +65,15 @@ function generateNodesAndEdges(data, parentId = null, nodes = [], edges = [], po
       position: { x: position.x + xSpacing, y: position.y }, // Place spouse node to the right
       type: 'custom',
       data: { label: data.spouse, img: data.spouseimage },
+      
     });
 
     edges.push({
       id: `e${currentId}-${spouseId}`,
       source: `${currentId}`,
       target: `${spouseId}`,
+      type: 'smoothstep', // Use the smoothstep edge type
+    
     });
   }
 
