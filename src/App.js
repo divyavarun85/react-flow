@@ -37,20 +37,7 @@ const jsonData = {
       "spouse": "Shloka Mehta",
       "image": avatarthree,
       "spouseimage": avatarfour,
-      "children": [
-        {
-          "name": "Prithvi Ambani",
-          "image": avatarfive
-        },
-        {
-          "name": "Aadi Ambani",
-          "image": avatarsix
-        },
-        {
-          "name": "Aarav Ambani", // New child
-          "image": avatarseven
-        }
-      ]
+     
     },
     {
       "name": "Isha Ambani",
@@ -101,17 +88,17 @@ const jsonData = {
 
 
 function generateNodesAndEdges(data, parentId = null, nodes = [], edges = [], position = { x: 0, y: 0 }) {
-  const xSpacing = 580; // Horizontal spacing between nodes
-  const ySpacing = 200; // Vertical spacing between levels
+  const xSpacing = 600; // Increase horizontal spacing between nodes
+  const ySpacing = 250; // Increase vertical spacing between levels
 
   const currentId = nodes.length + 1;
 
+  // Add the current node
   nodes.push({
     id: `${currentId}`,
     position: { ...position },
     type: 'custom',
     data: { label: data.name, img: data.image },
-    
   });
 
   if (parentId) {
@@ -119,8 +106,8 @@ function generateNodesAndEdges(data, parentId = null, nodes = [], edges = [], po
       id: `e${parentId}-${currentId}`,
       source: `${parentId}`,
       target: `${currentId}`,
-      position: { x: position.x + xSpacing , y: position.y},
       type: 'smoothstep', // Use the smoothstep edge type
+      style: { strokeWidth: 2 } // Optional: adjust edge style
     });
   }
 
@@ -128,7 +115,7 @@ function generateNodesAndEdges(data, parentId = null, nodes = [], edges = [], po
     const spouseId = nodes.length + 1;
     nodes.push({
       id: `${spouseId}`,
-      position: { x: position.x + xSpacing-300, y: position.y }, // Place spouse node to the right
+      position: { x: position.x + xSpacing - 300, y: position.y }, // Place spouse node to the right
       type: 'custom',
       data: { label: data.spouse, img: data.spouseimage },
     });
@@ -138,11 +125,11 @@ function generateNodesAndEdges(data, parentId = null, nodes = [], edges = [], po
       source: `${currentId}`,
       target: `${spouseId}`,
       type: 'smoothstep', // Use the smoothstep edge type
+      style: { strokeWidth: 2 } // Optional: adjust edge style
     });
   }
 
   if (data.children && data.children.length > 0) {
-    // Adjust vertical spacing and calculate positions for children
     const childCount = data.children.length;
     const childXOffset = -(xSpacing * (childCount - 1)) / 2; // Center children under the parent
     data.children.forEach((child, index) => {
@@ -158,6 +145,7 @@ function generateNodesAndEdges(data, parentId = null, nodes = [], edges = [], po
 
   return { nodes, edges };
 }
+
 
 export default function App() {
   const [nodes, setNodes] = useState([]);
